@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Link } from "expo-router";
-import { Formik, FormikHelpers } from "formik";
+import { Formik, FormikHelpers, FormikProps } from "formik";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import * as Yup from "yup";
 
@@ -38,7 +38,7 @@ export default function SignInScreen() {
         validationSchema={SignInSchema}
         onSubmit={handleSubmit}
       >
-        {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
+        {({ handleChange, handleBlur, handleSubmit, values, errors, touched }: FormikProps<any>) => (
           <>
           <View style= {styles.inputContainer}>
             <Ionicons name="mail-outline" size={20} color="black" style={styles.icon} />
@@ -86,8 +86,8 @@ export default function SignInScreen() {
 const styles = StyleSheet.create({
   container: { padding: 20, marginTop: 40 },
   title: { fontSize: 24, fontWeight: "bold", marginBottom: 20 },
-  input: { borderWidth: 1, padding: 10, marginBottom: 5 },
-  error: { color: "red", marginBottom: 5 },
+  input: { borderWidth: 1, padding: 10, marginBottom: 5, flex: 1 },
+  error: { color: "red", marginBottom: 5, fontSize: 12 },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -97,12 +97,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 10,
-  },
-  input: {
-    flex: 1,
-  },
-  error: {
-    color: "red", marginBottom: 5, fontSize: 12,
   },
   buttonContainer: {
     marginTop: 10,
