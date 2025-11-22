@@ -1,6 +1,6 @@
+import { Ionicons } from '@expo/vector-icons';
 import { Link } from "expo-router";
 import { Formik, FormikHelpers } from "formik";
-import React from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import * as Yup from "yup";
 
@@ -37,6 +37,8 @@ export default function SignUpScreen() {
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
           <>
+          <View style= {styles.inputContainer}>
+            <Ionicons name="mail-outline" size={20} color="black" style={styles.icon} />
             <TextInput
               style={styles.input}
               placeholder="Email"
@@ -44,8 +46,11 @@ export default function SignUpScreen() {
               onBlur={handleBlur("email")}
               value={values.email}
             />
+          </View>
             {touched.email && errors.email && <Text style={styles.error}>{errors.email}</Text>}
 
+          <View style= {styles.inputContainer}>
+            <Ionicons name="lock-closed-outline" size={20} color="black" style={styles.icon} />
             <TextInput
               style={styles.input}
               placeholder="Password"
@@ -54,8 +59,11 @@ export default function SignUpScreen() {
               onBlur={handleBlur("password")}
               value={values.password}
             />
+          </View>
             {touched.password && errors.password && <Text style={styles.error}>{errors.password}</Text>}
 
+          <View style= {styles.inputContainer}>
+            <Ionicons name="lock-closed-outline" size={20} color="black" style={styles.icon} />
             <TextInput
               style={styles.input}
               placeholder="Confirm Password"
@@ -64,6 +72,7 @@ export default function SignUpScreen() {
               onBlur={handleBlur("confirm")}
               value={values.confirm}
             />
+          </View>
             {touched.confirm && errors.confirm && <Text style={styles.error}>{errors.confirm}</Text>}
 
             <Button title="Create Account" onPress={() => handleSubmit()} />
@@ -83,4 +92,31 @@ const styles = StyleSheet.create({
   title: { fontSize: 24, fontWeight: "bold", marginBottom: 20 },
   input: { borderWidth: 1, padding: 10, marginBottom: 5 },
   error: { color: "red", marginBottom: 5 },
+
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    padding: 10,
+    marginBottom: 5,
+  },
+  icon: {
+    marginRight: 10,
+  },
+  input: {
+    flex: 1,
+  },
+  error: {
+    color: "red", marginBottom: 5, fontSize: 12,
+  },
+  buttonContainer: {
+    marginTop: 10,
+  },
+  footer: {
+    marginTop: 20,
+    flexDirection: "row", justifyContent: "center",
+  },
+  link: {
+    color: "blue", marginLeft: 5,
+  },
 });
